@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import Counter from "./component/Counter";
+import { useState } from "react";
+
+const topContainer = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "start",
+  justifyContent: "start",
+  fontSize: "300%",
+  marginLeft: "20px",
+  width: "100%",
+  height: "100%",
+};
+
+const buttonStyle = {
+  marginTop: "20px",
+  marginLeft: "10px",
+};
 
 function App() {
+  
+  const [counterUI, setCounterUI] = useState(0);
+  const uicount = new Array(counterUI).fill(0);
+  console.log(uicount);
+  const startCounter = () => {
+    setCounterUI((c) => c + 1);
+   
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={topContainer}>
+      <div>
+        <button type="button" style={buttonStyle} onClick={startCounter}>
+          Start Counter
+        </button>
+        <hr />
+      </div>
+      {uicount.map((person) => {
+        return <Counter key={person}/>;
+      })}
     </div>
   );
 }
