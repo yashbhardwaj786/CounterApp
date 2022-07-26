@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export default function Counter() {
+export default function Counter({id, removeLayer}) {
   const [count, setCount] = useState(0);
   const [isPaused, setPaused] = useState(false);
   const [isStop, setStop] = useState(false);
@@ -70,6 +70,9 @@ export default function Counter() {
         </button>
         <button type="button" style={buttonStyle1} onClick={isStop ? restartCounter : stopCounter}>
           {restartBtn}
+        </button>
+        <button type="button" style={buttonStyle1} onClick={() => {removeLayer(id)}}>
+          Remove
         </button>
       </div>
       <hr />
